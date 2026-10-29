@@ -143,7 +143,7 @@ export default function AdminDashboardPage({ onLogout, onNavigate }) {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col md:flex-row text-slate-900 font-sans">
+    <div className="h-screen bg-slate-50 flex overflow-hidden text-slate-900 font-sans">
       
       {/* Mobile Sidebar Overlay */}
       {sidebarOpen && (
@@ -153,8 +153,8 @@ export default function AdminDashboardPage({ onLogout, onNavigate }) {
         />
       )}
 
-      {/* Sidebar (Matching Reference Image) */}
-      <aside className={`fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col justify-between transition-transform duration-200 ease-in-out md:static md:translate-x-0 ${
+      {/* Sidebar (Permanently Fixed in place - does not scroll with page content) */}
+      <aside className={`fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col justify-between transition-transform duration-200 ease-in-out md:translate-x-0 shrink-0 h-full ${
         sidebarOpen ? 'translate-x-0' : '-translate-x-full'
       }`}>
         <div>
@@ -243,8 +243,8 @@ export default function AdminDashboardPage({ onLogout, onNavigate }) {
         </div>
       </aside>
 
-      {/* Main Content Area */}
-      <div className="flex-1 flex flex-col min-w-0">
+      {/* Main Content Area - Scrollable with permanent fixed sidebar offset */}
+      <div className="flex-1 flex flex-col min-w-0 h-full overflow-y-auto md:ml-64">
         
         {/* Top Navbar */}
         <header className="h-20 bg-white border-b border-slate-200 px-4 sm:px-8 flex items-center justify-between sticky top-0 z-30">
