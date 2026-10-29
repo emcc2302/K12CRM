@@ -68,10 +68,10 @@ export default function InquiryForm({ onSubmitted }) {
   };
 
   return (
-    <div id="inquiry-form" className="relative max-w-4xl mx-auto px-4 sm:px-6 pb-20">
+    <div id="inquiry-form" className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
       
       {/* Container Card */}
-      <div className="bg-white rounded-3xl border border-slate-200/80 shadow-xl shadow-slate-200/50 p-6 sm:p-10 transition-all">
+      <div className="bg-white rounded-3xl border border-slate-200/80 shadow-xl shadow-slate-200/50 p-6 sm:p-10 lg:p-12 transition-all">
         
         {/* Card Header */}
         <div className="mb-8 text-left">

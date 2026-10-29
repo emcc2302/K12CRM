@@ -27,8 +27,8 @@ export default function HomePage({ onNavigate }) {
       </main>
 
       {/* Clean Footer */}
-      <footer className="bg-white border-t border-slate-200 py-10 px-4 sm:px-8 mt-12 text-slate-500 text-xs">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <footer className="bg-white border-t border-slate-200 py-10 mt-12 text-slate-500 text-xs">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2.5">
             <div className="w-7 h-7 rounded-lg bg-brand-700 text-white flex items-center justify-center">
               <GraduationCap className="w-4 h-4" />
