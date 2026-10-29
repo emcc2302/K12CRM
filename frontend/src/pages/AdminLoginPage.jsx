@@ -23,12 +23,6 @@ export default function AdminLoginPage({ onLoginSuccess, onNavigate }) {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
 
-  const handleFillDemo = () => {
-    setEmail('admin@example.com');
-    setPassword('admin123');
-    setErrorMessage(null);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMessage(null);
@@ -150,20 +144,6 @@ export default function AdminLoginPage({ onLoginSuccess, onNavigate }) {
             <p className="mt-2 text-sm text-slate-500">
               Enter your credentials to continue
             </p>
-          </div>
-
-          {/* Quick Demo Autofill Pill */}
-          <div className="p-3.5 rounded-2xl bg-brand-50 border border-brand-200 flex items-center justify-between text-xs">
-            <div className="text-slate-600">
-              <span className="font-bold text-brand-900">Demo Login:</span> admin@example.com / admin123
-            </div>
-            <button
-              type="button"
-              onClick={handleFillDemo}
-              className="px-2.5 py-1 bg-brand-700 text-white rounded-lg font-semibold hover:bg-brand-800 transition-colors shrink-0"
-            >
-              Autofill
-            </button>
           </div>
 
           {/* Error Alert */}
