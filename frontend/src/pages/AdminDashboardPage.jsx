@@ -378,7 +378,7 @@ export default function AdminDashboardPage({ onLogout, onNavigate }) {
                         {stats.new} New Inquiries Waiting for Response
                       </h4>
                       <p className="text-xs text-blue-700">
-                        Review pending parent, student, and school submissions to maintain fast response times.
+                        Process pending parent, student, and school submissions to maintain fast response times.
                       </p>
                     </div>
                   </div>

@@ -46,14 +46,14 @@ export default function HeroSection({ onScrollToForm }) {
             {/* 3 Trust Indicator Badges */}
             <div id="trust-section" className="pt-8 border-t border-slate-200/80 grid grid-cols-1 sm:grid-cols-3 gap-6 text-left">
               
-              {/* Badge 1: Trusted by 10K+ Students */}
+              {/* Badge 1: Direct Inquiry Channel */}
               <div className="flex items-start gap-3.5 group">
                 <div className="w-10 h-10 rounded-xl bg-brand-50 group-hover:bg-brand-100 border border-brand-200/60 flex items-center justify-center text-brand-700 shrink-0 transition-colors">
-                  <Award className="w-5 h-5" />
+                  <GraduationCap className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-slate-900">Trusted by</h4>
-                  <p className="text-xs text-slate-600 font-medium">10K+ Students</p>
+                  <h4 className="text-sm font-bold text-slate-900">Direct Inquiries</h4>
+                  <p className="text-xs text-slate-600 font-medium">Students & Parents</p>
                 </div>
               </div>
 
@@ -83,14 +83,14 @@ export default function HeroSection({ onScrollToForm }) {
 
           </div>
 
-          {/* Right Column: Reference Visual with Student & Floating Badges */}
+          {/* Right Column: Reference Visual with Student & Floating Badge */}
           <div className="lg:col-span-5 flex justify-center">
             <div className="relative w-full max-w-md">
               
               {/* Soft circular background shape */}
               <div className="aspect-square rounded-full bg-gradient-to-tr from-brand-200/70 via-indigo-100 to-brand-50 border-8 border-white shadow-2xl relative flex items-center justify-center overflow-hidden">
                 
-                {/* Embedded High-Quality Student Portrait */}
+                {/* High-Quality Student Portrait */}
                 <img
                   src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=700&q=80"
                   alt="Student with books"
@@ -101,7 +101,7 @@ export default function HeroSection({ onScrollToForm }) {
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-950/20 via-transparent to-transparent pointer-events-none" />
               </div>
 
-              {/* Floating Badge 1: Top Left - "Your Future Our Support" */}
+              {/* Floating Badge: Top Left - "Your Future Our Support" */}
               <div className="absolute -top-3 left-2 sm:-left-4 bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-3 animate-bounce [animation-duration:4s]">
                 <div className="w-8 h-8 rounded-lg bg-brand-700 text-white flex items-center justify-center shadow-md shadow-brand-700/20">
                   <GraduationCap className="w-4 h-4" />
@@ -109,31 +109,6 @@ export default function HeroSection({ onScrollToForm }) {
                 <div className="text-left">
                   <div className="text-xs font-bold text-slate-900">Your Future</div>
                   <div className="text-[11px] font-medium text-brand-700">Our Support</div>
-                </div>
-              </div>
-
-              {/* Floating Badge 2: Bottom Right - "Join Thousands of Happy Learners" */}
-              <div className="absolute -bottom-4 right-0 sm:-right-4 bg-white/95 backdrop-blur-md p-3.5 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-3">
-                <div className="flex -space-x-2 overflow-hidden">
-                  <img
-                    className="inline-block h-8 w-8 rounded-full ring-2 ring-white object-cover"
-                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80"
-                    alt="User avatar 1"
-                  />
-                  <img
-                    className="inline-block h-8 w-8 rounded-full ring-2 ring-white object-cover"
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80"
-                    alt="User avatar 2"
-                  />
-                  <img
-                    className="inline-block h-8 w-8 rounded-full ring-2 ring-white object-cover"
-                    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80"
-                    alt="User avatar 3"
-                  />
-                </div>
-                <div className="text-left">
-                  <div className="text-xs font-bold text-slate-900">Join Thousands</div>
-                  <div className="text-[11px] font-medium text-slate-500">of Happy Learners</div>
                 </div>
               </div>
 
