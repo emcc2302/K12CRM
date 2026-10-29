@@ -150,3 +150,4 @@ export async function deleteInquiry(id) {
 export async function fetchStats() {
   return request('/inquiries/stats');
 }
+

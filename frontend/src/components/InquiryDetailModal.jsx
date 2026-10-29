@@ -272,3 +272,4 @@ export default function InquiryDetailModal({ inquiry, onClose, onUpdated, onDele
     </div>
   );
 }
+

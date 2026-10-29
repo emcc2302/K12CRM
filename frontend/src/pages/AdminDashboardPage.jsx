@@ -740,3 +740,4 @@ export default function AdminDashboardPage({ onLogout, onNavigate }) {
     </div>
   );
 }
+

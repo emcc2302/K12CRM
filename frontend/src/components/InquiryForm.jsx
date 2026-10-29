@@ -276,3 +276,4 @@ export default function InquiryForm({ onSubmitted }) {
     </div>
   );
 }
+

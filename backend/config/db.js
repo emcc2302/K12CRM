@@ -98,14 +98,18 @@ const fallbackStore = {
 
 // Initialize PostgreSQL Pool
 if (connectionString && !connectionString.includes('placeholder')) {
-  const isSslRequired = connectionString.includes('sslmode=require') || process.env.DB_SSL === 'true';
+  const isCloudOrSsl = 
+    connectionString.includes('supabase') || 
+    connectionString.includes('neon') || 
+    connectionString.includes('sslmode') || 
+    process.env.DB_SSL === 'true';
 
   pool = new Pool({
     connectionString,
-    ssl: isSslRequired ? { rejectUnauthorized: false } : false,
+    ssl: isCloudOrSsl ? { rejectUnauthorized: false } : false,
     max: 10,
     idleTimeoutMillis: 30000,
-    connectionTimeoutMillis: 5000
+    connectionTimeoutMillis: 8000
   });
 
   pool.on('error', (err) => {

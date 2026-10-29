@@ -256,3 +256,4 @@ export default function AdminLoginPage({ onLoginSuccess, onNavigate }) {
     </div>
   );
 }
+

@@ -13,11 +13,15 @@ if (!connectionString || connectionString.includes('placeholder')) {
   process.exit(0);
 }
 
-const isSslRequired = connectionString.includes('sslmode=require') || process.env.DB_SSL === 'true';
+const isCloudOrSsl = 
+  connectionString.includes('supabase') || 
+  connectionString.includes('neon') || 
+  connectionString.includes('sslmode') || 
+  process.env.DB_SSL === 'true';
 
 const pool = new Pool({
   connectionString,
-  ssl: isSslRequired ? { rejectUnauthorized: false } : false
+  ssl: isCloudOrSsl ? { rejectUnauthorized: false } : false
 });
 
 async function runSeed() {

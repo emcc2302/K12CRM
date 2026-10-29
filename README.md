@@ -279,3 +279,4 @@ curl -X GET "http://localhost:5000/api/inquiries?category=Scholarship" \
 
 ## 📄 License
 ISC License &copy; EduCRM
+
