@@ -1,12 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import HeroSection from '../components/HeroSection';
+import AboutSection from '../components/AboutSection';
+import ProgramsSection from '../components/ProgramsSection';
 import InquiryForm from '../components/InquiryForm';
-import { GraduationCap, Heart, ShieldCheck } from 'lucide-react';
+import { GraduationCap, ShieldCheck } from 'lucide-react';
 
 export default function HomePage({ onNavigate }) {
+  const [selectedCategory, setSelectedCategory] = useState('Scholarship');
+
   const handleScrollToForm = () => {
-    const el = document.getElementById('inquiry-form');
+    const el = document.getElementById('contact');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleSelectProgram = (category) => {
+    setSelectedCategory(category);
+    const el = document.getElementById('contact');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }
@@ -14,16 +26,25 @@ export default function HomePage({ onNavigate }) {
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 font-sans">
-      {/* Top Navbar */}
+      {/* Top Navbar: Natural scroll flow, responsive hover effects, active scrollspy */}
       <Navbar onNavigate={onNavigate} activeView="public" />
 
       {/* Main Content Area */}
-      <main className="flex-1">
-        {/* Hero Section matching Top-Left reference */}
+      <main className="flex-1 space-y-4">
+        {/* 1. Home Section */}
         <HeroSection onScrollToForm={handleScrollToForm} />
 
-        {/* Public Inquiry Form Section matching Bottom-Left reference */}
-        <InquiryForm />
+        {/* 2. About Section */}
+        <AboutSection onScrollToForm={handleScrollToForm} />
+
+        {/* 3. Programs Section */}
+        <ProgramsSection onSelectProgram={handleSelectProgram} />
+
+        {/* 4. Contact & Public Inquiry Section */}
+        <InquiryForm 
+          initialCategory={selectedCategory}
+          onSubmitted={() => {}}
+        />
       </main>
 
       {/* Clean Footer */}
@@ -40,10 +61,10 @@ export default function HomePage({ onNavigate }) {
           <div className="flex items-center gap-6">
             <button
               onClick={() => onNavigate('login')}
-              className="inline-flex items-center gap-1.5 font-semibold text-brand-700 hover:text-brand-800"
+              className="inline-flex items-center gap-1.5 font-semibold text-brand-700 hover:text-brand-800 cursor-pointer"
             >
               <ShieldCheck className="w-3.5 h-3.5" />
-              Admin Portal
+              <span>Admin Portal</span>
             </button>
             <span>&copy; {new Date().getFullYear()} All Rights Reserved</span>
           </div>
@@ -52,4 +73,3 @@ export default function HomePage({ onNavigate }) {
     </div>
   );
 }
-

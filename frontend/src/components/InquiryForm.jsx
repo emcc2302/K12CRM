@@ -1,19 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { User, Mail, Phone, Send, CheckCircle2, AlertCircle, ChevronDown, Loader2 } from 'lucide-react';
 import { submitInquiry } from '../services/api';
 
 const USER_TYPES = ['Parent', 'Student', 'School'];
 const CATEGORIES = ['Scholarship', 'Concert', 'Admission', 'General Query'];
 
-export default function InquiryForm({ onSubmitted }) {
+export default function InquiryForm({ onSubmitted, initialCategory }) {
   const [formData, setFormData] = useState({
     user_type: 'Parent',
-    category: 'Scholarship',
+    category: initialCategory || 'Scholarship',
     name: '',
     email: '',
     phone: '',
     message: ''
   });
+
+  useEffect(() => {
+    if (initialCategory && CATEGORIES.includes(initialCategory)) {
+      setFormData((prev) => ({ ...prev, category: initialCategory }));
+    }
+  }, [initialCategory]);
 
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState(null);
@@ -68,7 +74,8 @@ export default function InquiryForm({ onSubmitted }) {
   };
 
   return (
-    <div id="inquiry-form" className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+    <section id="contact" className="scroll-mt-8">
+      <div id="inquiry-form" className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 pt-4">
       
       {/* Container Card */}
       <div className="bg-white rounded-3xl border border-slate-200/80 shadow-xl shadow-slate-200/50 p-6 sm:p-10 lg:p-12 transition-all">
@@ -274,6 +281,7 @@ export default function InquiryForm({ onSubmitted }) {
 
       </div>
     </div>
+    </section>
   );
 }
 
