@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { User, Mail, Phone, Send, CheckCircle2, AlertCircle, ChevronDown, Loader2 } from 'lucide-react';
+import { User, Mail, Phone, Send, CheckCircle2, AlertCircle, ChevronDown, Loader2, X } from 'lucide-react';
 import { submitInquiry } from '../services/api';
 
 const USER_TYPES = ['Parent', 'Student', 'School'];
@@ -24,6 +24,19 @@ export default function InquiryForm({ onSubmitted, initialCategory }) {
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
+  
+  // Floating Toast Notification state
+  const [toast, setToast] = useState(null);
+
+  // Auto-dismiss toast after 5 seconds
+  useEffect(() => {
+    if (toast?.show) {
+      const timer = setTimeout(() => {
+        setToast(null);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -38,21 +51,44 @@ export default function InquiryForm({ onSubmitted, initialCategory }) {
 
     // Validation
     if (!formData.name.trim() || !formData.email.trim() || !formData.phone.trim() || !formData.message.trim()) {
-      setErrorMessage('Please fill in all required fields.');
+      const msg = 'Please fill in all required fields.';
+      setErrorMessage(msg);
+      setToast({
+        show: true,
+        type: 'error',
+        title: 'Validation Error',
+        message: msg
+      });
       return;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email.trim())) {
-      setErrorMessage('Please provide a valid email address.');
+      const msg = 'Please provide a valid email address.';
+      setErrorMessage(msg);
+      setToast({
+        show: true,
+        type: 'error',
+        title: 'Invalid Email Address',
+        message: msg
+      });
       return;
     }
 
     try {
       setLoading(true);
       const res = await submitInquiry(formData);
-      setSuccessMessage(res.message || 'Inquiry submitted successfully! Our team will contact you soon.');
+      const successText = res.message || 'Inquiry submitted successfully! Our team will contact you soon.';
+      setSuccessMessage(successText);
       
+      // Trigger floating success Toast Notification
+      setToast({
+        show: true,
+        type: 'success',
+        title: 'Inquiry Submitted Successfully!',
+        message: 'Thank you! Your inquiry has been saved into our system and our counseling team will get back to you soon.'
+      });
+
       // Reset form
       setFormData({
         user_type: 'Parent',
@@ -67,7 +103,16 @@ export default function InquiryForm({ onSubmitted, initialCategory }) {
         onSubmitted(res.inquiry);
       }
     } catch (err) {
-      setErrorMessage(err.message || 'Something went wrong while submitting. Please try again.');
+      const errorText = err.message || 'Something went wrong while submitting. Please try again.';
+      setErrorMessage(errorText);
+      
+      // Trigger floating error Toast Notification
+      setToast({
+        show: true,
+        type: 'error',
+        title: 'Submission Failed',
+        message: errorText
+      });
     } finally {
       setLoading(false);
     }
@@ -75,6 +120,56 @@ export default function InquiryForm({ onSubmitted, initialCategory }) {
 
   return (
     <section id="contact" className="scroll-mt-24">
+      
+      {/* Floating Toast Notification */}
+      {toast && (
+        <div 
+          role="alert"
+          aria-live="assertive"
+          className={`fixed top-24 right-4 sm:right-8 z-50 max-w-md w-[calc(100%-2rem)] sm:w-auto p-4 rounded-2xl shadow-2xl border-2 transition-all duration-300 ease-out flex items-start gap-3.5 animate-fadeIn backdrop-blur-md ${
+            toast.type === 'success'
+              ? 'bg-white/95 border-emerald-400 text-slate-900 shadow-emerald-500/20 ring-4 ring-emerald-50'
+              : 'bg-white/95 border-rose-400 text-slate-900 shadow-rose-500/20 ring-4 ring-rose-50'
+          }`}
+        >
+          {/* Toast Status Icon */}
+          <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 shadow-sm ${
+            toast.type === 'success' 
+              ? 'bg-emerald-600 text-white shadow-emerald-600/30' 
+              : 'bg-rose-600 text-white shadow-rose-600/30'
+          }`}>
+            {toast.type === 'success' ? (
+              <CheckCircle2 className="w-5 h-5" />
+            ) : (
+              <AlertCircle className="w-5 h-5" />
+            )}
+          </div>
+
+          {/* Toast Body */}
+          <div className="flex-1 text-left min-w-0 pr-1">
+            <h4 className="text-sm font-extrabold text-slate-900 leading-tight">
+              {toast.title}
+            </h4>
+            <p className="text-xs text-slate-600/90 mt-1 leading-relaxed font-normal">
+              {toast.message}
+            </p>
+            <span className="block text-[10px] text-slate-400 font-semibold mt-1.5 uppercase tracking-wider">
+              {toast.type === 'success' ? 'Saved to Supabase Database' : 'Submission Alert'}
+            </span>
+          </div>
+
+          {/* Toast Dismiss Button */}
+          <button
+            type="button"
+            onClick={() => setToast(null)}
+            className="p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors focus:outline-none cursor-pointer"
+            aria-label="Close notification"
+          >
+            <X className="w-4 h-4" />
+          </button>
+        </div>
+      )}
+
       <div id="inquiry-form" className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 pt-4">
       
       {/* Container Card */}
