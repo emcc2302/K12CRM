@@ -53,6 +53,9 @@ export default function AdminDashboardPage({ onLogout, onNavigate }) {
 
   // Action Menu Open ID
   const [activeMenuId, setActiveMenuId] = useState(null);
+  
+  // Profile dropdown menu open state
+  const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
 
   // Load inquiries
   const loadData = async () => {
@@ -247,32 +250,134 @@ export default function AdminDashboardPage({ onLogout, onNavigate }) {
       <div className="flex-1 flex flex-col min-w-0 h-full overflow-y-auto md:ml-64">
         
         {/* Top Navbar */}
-        <header className="h-20 bg-white border-b border-slate-200 px-4 sm:px-8 flex items-center justify-between sticky top-0 z-30">
-          <div className="flex items-center gap-3">
+        <header className="h-16 sm:h-20 bg-white border-b border-slate-200 px-4 sm:px-8 flex items-center justify-between sticky top-0 z-30 shadow-xs">
+          
+          {/* Left: Mobile Sidebar Trigger & Breadcrumb Navigation */}
+          <div className="flex items-center gap-3 sm:gap-4">
             <button
+              type="button"
               onClick={() => setSidebarOpen(true)}
-              className="p-2 rounded-xl text-slate-500 hover:bg-slate-100 md:hidden"
+              className="p-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors md:hidden focus:outline-none cursor-pointer"
+              aria-label="Toggle mobile sidebar"
             >
               <Menu className="w-5 h-5" />
             </button>
+
+            {/* Breadcrumb Context Indicator */}
+            <div className="flex items-center gap-2 text-xs">
+              <span className="font-semibold text-slate-400 hidden sm:inline">Admin</span>
+              <span className="text-slate-300 hidden sm:inline">/</span>
+              <span className="font-bold text-slate-800 capitalize bg-slate-100 px-3 py-1.5 rounded-xl border border-slate-200/60">
+                {activeTab === 'dashboard' ? 'Overview' : activeTab === 'all' ? 'All Inquiries' : activeTab}
+              </span>
+            </div>
+
+            {/* Quick Public Website Link */}
             <button
+              type="button"
               onClick={() => onNavigate('public')}
-              className="text-xs font-semibold px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors hidden sm:inline-flex items-center gap-1.5"
+              className="text-xs font-semibold px-3 py-1.5 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-700 hover:text-brand-700 border border-slate-200 transition-colors hidden lg:inline-flex items-center gap-1.5 cursor-pointer"
             >
-              <ExternalLink className="w-3.5 h-3.5" />
-              View Public Website
+              <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
+              <span>View Public Website</span>
             </button>
           </div>
 
-          {/* User Profile Pill in Top Header */}
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-full bg-brand-700 text-white font-bold text-sm flex items-center justify-center shadow-md shadow-brand-700/20">
-              A
+          {/* Right: Quick Indicators & Interactive Admin Profile */}
+          <div className="flex items-center gap-3 sm:gap-4">
+            
+            {/* Live Database Status Indicator */}
+            <div className="hidden md:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/80 text-[11px] font-bold text-emerald-800 shadow-2xs">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              <span>Supabase Live</span>
             </div>
-            <div className="hidden sm:block text-left">
-              <div className="text-xs font-bold text-slate-900">Admin</div>
-              <div className="text-[11px] text-slate-500">{adminUser.email}</div>
+
+            {/* New Inquiry Counter Badge */}
+            {stats.new > 0 && (
+              <button
+                type="button"
+                onClick={() => { setActiveTab('all'); setSelectedStatus('New'); }}
+                className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-50 hover:bg-blue-100 border border-blue-200 text-[11px] font-bold text-blue-800 transition-colors cursor-pointer"
+                title={`${stats.new} new inquiries`}
+              >
+                <Inbox className="w-3.5 h-3.5 text-blue-600" />
+                <span>{stats.new} New</span>
+              </button>
+            )}
+
+            {/* Admin User Profile Card with Interactive Dropdown */}
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
+                className="flex items-center gap-2.5 sm:gap-3 p-1.5 sm:px-3 sm:py-1.5 rounded-2xl hover:bg-slate-100/90 border border-transparent hover:border-slate-200 transition-all cursor-pointer focus:outline-none"
+              >
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-brand-700 to-brand-500 text-white font-black text-sm flex items-center justify-center shadow-md shadow-brand-700/25 ring-2 ring-brand-100">
+                  A
+                </div>
+                <div className="hidden sm:block text-left">
+                  <div className="text-xs font-bold text-slate-900 leading-tight">Admin User</div>
+                  <div className="text-[11px] text-slate-400 font-medium leading-tight">{adminUser.email}</div>
+                </div>
+                <ChevronDown className={`w-3.5 h-3.5 text-slate-400 hidden sm:block transition-transform duration-200 ${profileDropdownOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {/* Floating Profile Dropdown Menu */}
+              {profileDropdownOpen && (
+                <>
+                  <div 
+                    className="fixed inset-0 z-40" 
+                    onClick={() => setProfileDropdownOpen(false)} 
+                  />
+                  <div className="absolute right-0 mt-2 w-60 rounded-2xl bg-white border border-slate-200 shadow-2xl z-50 p-2 space-y-1 text-left animate-fadeIn">
+                    <div className="px-3 py-2.5 bg-slate-50 rounded-xl border border-slate-100">
+                      <div className="text-xs font-bold text-slate-900">{adminUser.name || 'Admin User'}</div>
+                      <div className="text-[11px] text-slate-500 truncate">{adminUser.email}</div>
+                      <span className="inline-block mt-1.5 text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-50 text-brand-700 border border-brand-200">
+                        Custom JWT Auth Active
+                      </span>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => { setActiveTab('profile'); setProfileDropdownOpen(false); }}
+                      className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 hover:bg-slate-50 hover:text-brand-700 transition-colors cursor-pointer"
+                    >
+                      <UserCircle className="w-4 h-4 text-slate-500" />
+                      <span>Admin Profile & Settings</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => { onNavigate('public'); setProfileDropdownOpen(false); }}
+                      className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 hover:bg-slate-50 hover:text-brand-700 transition-colors cursor-pointer"
+                    >
+                      <ExternalLink className="w-4 h-4 text-slate-500" />
+                      <span>View Public Website</span>
+                    </button>
+
+                    <div className="border-t border-slate-100 my-1" />
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setProfileDropdownOpen(false);
+                        clearAuthSession();
+                        if (onLogout) onLogout();
+                      }}
+                      className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-rose-600 hover:bg-rose-50 transition-colors cursor-pointer"
+                    >
+                      <LogOut className="w-4 h-4 text-rose-500" />
+                      <span>Sign Out</span>
+                    </button>
+                  </div>
+                </>
+              )}
             </div>
+
           </div>
         </header>
 
