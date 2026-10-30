@@ -10,6 +10,7 @@ export default function HomePage({ onNavigate }) {
   const [selectedCategory, setSelectedCategory] = useState('Scholarship');
 
   const handleScrollToForm = () => {
+    window.history.pushState(null, '', '#contact');
     const el = document.getElementById('contact');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
@@ -18,6 +19,7 @@ export default function HomePage({ onNavigate }) {
 
   const handleSelectProgram = (category) => {
     setSelectedCategory(category);
+    window.history.pushState(null, '', '#contact');
     const el = document.getElementById('contact');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });

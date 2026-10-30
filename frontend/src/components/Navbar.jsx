@@ -14,9 +14,19 @@ export default function Navbar({ onNavigate, activeView }) {
   const [activeSection, setActiveSection] = useState('home');
   const isAuthenticated = !!getAuthToken();
 
-  // Scrollspy: update active link based on currently visible section
+  // Scrollspy: update active link and browser URL based on currently visible section
   useEffect(() => {
     if (activeView !== 'public') return;
+
+    // Check URL hash on initial load (e.g. direct visit to /#programs or /#about)
+    const initialHash = window.location.hash.replace('#', '').toLowerCase();
+    if (initialHash && ['home', 'about', 'programs', 'contact'].includes(initialHash)) {
+      setActiveSection(initialHash);
+      setTimeout(() => {
+        const el = document.getElementById(initialHash);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 150);
+    }
 
     const handleScroll = () => {
       const sectionIds = ['home', 'about', 'programs', 'contact'];
@@ -27,7 +37,13 @@ export default function Navbar({ onNavigate, activeView }) {
         if (el) {
           const top = el.offsetTop;
           if (scrollPosition >= top) {
-            setActiveSection(sectionIds[i]);
+            const currentSection = sectionIds[i];
+            setActiveSection(currentSection);
+            
+            // Sync browser URL address bar in real-time
+            if (window.location.hash !== `#${currentSection}`) {
+              window.history.replaceState(null, '', `#${currentSection}`);
+            }
             break;
           }
         }
@@ -41,9 +57,12 @@ export default function Navbar({ onNavigate, activeView }) {
 
   const handleNavClick = (sectionId) => {
     setActiveSection(sectionId);
+    
+    // Update browser URL immediately
+    window.history.pushState(null, '', `#${sectionId}`);
 
     if (activeView !== 'public') {
-      onNavigate('public');
+      onNavigate('public', sectionId);
       setTimeout(() => {
         const el = document.getElementById(sectionId);
         if (el) el.scrollIntoView({ behavior: 'smooth' });

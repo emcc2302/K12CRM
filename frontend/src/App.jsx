@@ -39,16 +39,23 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  const navigateTo = (view) => {
+  const navigateTo = (view, section = null) => {
     setCurrentView(view);
     if (view === 'login') {
       window.location.hash = '#login';
     } else if (view === 'dashboard') {
       window.location.hash = '#dashboard';
     } else {
-      window.location.hash = '#';
+      const currentHash = window.location.hash.toLowerCase();
+      if (section) {
+        window.location.hash = `#${section}`;
+      } else if (!['#home', '#about', '#programs', '#contact'].includes(currentHash)) {
+        window.location.hash = '#home';
+      }
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (view === 'login' || view === 'dashboard') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   const handleLoginSuccess = () => {
