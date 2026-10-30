@@ -170,17 +170,17 @@ export default function InquiryForm({ onSubmitted, initialCategory }) {
         </div>
       )}
 
-      <div id="inquiry-form" className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 pt-4">
+      <div id="inquiry-form" className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 sm:pb-20 pt-2 sm:pt-4">
       
       {/* Container Card */}
-      <div className="bg-white rounded-3xl border border-slate-200/80 shadow-xl shadow-slate-200/50 p-6 sm:p-10 lg:p-12 transition-all">
+      <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200/80 shadow-xl shadow-slate-200/50 p-4 sm:p-10 lg:p-12 transition-all">
         
         {/* Card Header */}
-        <div className="mb-8 text-left">
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+        <div className="mb-5 sm:mb-8 text-left">
+          <h2 className="text-xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
             Submit Your Inquiry
           </h2>
-          <p className="mt-1.5 text-sm sm:text-base text-slate-500 font-normal">
+          <p className="mt-1 text-xs sm:text-base text-slate-500 font-normal">
             Fill out the form below and our team will get back to you soon.
           </p>
         </div>
