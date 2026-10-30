@@ -4,9 +4,7 @@ import {
   Users, 
   School, 
   CheckCircle2, 
-  Sparkles, 
   Compass, 
-  HeartHandshake, 
   ArrowRight 
 } from 'lucide-react';
 
@@ -22,10 +20,12 @@ export default function AboutSection({ onScrollToForm }) {
         "Stream selection & career counseling",
         "Entrance exam preparation advice"
       ],
-      color: "from-blue-600 to-indigo-600",
-      bgColor: "bg-blue-50/60",
-      borderColor: "border-blue-100",
-      iconBg: "bg-blue-600 text-white"
+      borderColor: "border-blue-200 hover:border-blue-500",
+      hoverShadow: "hover:shadow-blue-500/10",
+      bgColor: "bg-blue-50/40 hover:bg-blue-50/70",
+      iconBg: "bg-blue-600 text-white shadow-blue-500/20",
+      tagColor: "text-blue-700/85",
+      accentDot: "text-blue-600"
     },
     {
       icon: Users,
@@ -37,10 +37,12 @@ export default function AboutSection({ onScrollToForm }) {
         "Personalized doubt-clearing sessions",
         "Continuous inquiry & application tracking"
       ],
-      color: "from-brand-700 to-brand-500",
-      bgColor: "bg-brand-50/60",
-      borderColor: "border-brand-100",
-      iconBg: "bg-brand-700 text-white"
+      borderColor: "border-brand-200 hover:border-brand-500",
+      hoverShadow: "hover:shadow-brand-500/10",
+      bgColor: "bg-brand-50/40 hover:bg-brand-50/70",
+      iconBg: "bg-brand-700 text-white shadow-brand-700/20",
+      tagColor: "text-brand-700/85",
+      accentDot: "text-brand-600"
     },
     {
       icon: School,
@@ -52,81 +54,90 @@ export default function AboutSection({ onScrollToForm }) {
         "Institutional scholarship allocations",
         "Streamlined CRM inquiry management"
       ],
-      color: "from-emerald-600 to-teal-600",
-      bgColor: "bg-emerald-50/60",
-      borderColor: "border-emerald-100",
-      iconBg: "bg-emerald-600 text-white"
+      borderColor: "border-emerald-200 hover:border-emerald-500",
+      hoverShadow: "hover:shadow-emerald-500/10",
+      bgColor: "bg-emerald-50/40 hover:bg-emerald-50/70",
+      iconBg: "bg-emerald-600 text-white shadow-emerald-600/20",
+      tagColor: "text-emerald-700/85",
+      accentDot: "text-emerald-600"
     }
   ];
 
   return (
-    <section id="about" className="py-16 lg:py-24 bg-white border-y border-slate-100 relative overflow-hidden scroll-mt-24">
+    <section id="about" className="py-12 lg:py-16 bg-white border-y border-slate-200 relative overflow-hidden scroll-mt-24">
       {/* Background ambient accents */}
-      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-72 h-72 bg-brand-50/80 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/4 right-0 w-80 h-80 bg-blue-50/80 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-64 h-64 bg-brand-50/70 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 right-0 w-64 h-64 bg-blue-50/70 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-50 border border-brand-200/70 text-brand-700 text-xs font-semibold tracking-wide shadow-xs">
+        <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 border border-brand-200 text-brand-700 text-xs font-semibold tracking-wide shadow-xs">
             <Compass className="w-3.5 h-3.5 text-brand-600" />
             <span>About EduCRM Platform</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight leading-tight">
             Bridging Aspirations with <br className="hidden sm:block" />
             <span className="bg-gradient-to-r from-brand-700 via-brand-600 to-indigo-600 bg-clip-text text-transparent">
               Educational Opportunities
             </span>
           </h2>
 
-          <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
-            EduCRM is a specialized inquiry management and guidance platform created to connect parents, students, and schools through transparent, timely, and personalized counseling.
+          <p className="text-xs sm:text-sm text-slate-600/75 leading-relaxed font-normal max-w-xl mx-auto">
+            EduCRM connects parents, students, and schools through transparent, timely, and personalized counseling support.
           </p>
         </div>
 
-        {/* 3 Pillar Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+        {/* 3 Pillar Cards - Compact Size with Prominent Borders and Rich Hover Effects */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
           {pillars.map((pillar) => {
             const Icon = pillar.icon;
             return (
               <div 
                 key={pillar.title}
-                className={`rounded-3xl p-8 border ${pillar.borderColor} ${pillar.bgColor} hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between`}
+                className={`group rounded-2xl p-5 sm:p-6 border-2 ${pillar.borderColor} ${pillar.bgColor} shadow-sm hover:shadow-xl ${pillar.hoverShadow} transition-all duration-300 ease-out transform hover:-translate-y-1.5 hover:scale-[1.01] flex flex-col justify-between cursor-pointer`}
               >
                 <div>
-                  <div className={`w-12 h-12 rounded-2xl ${pillar.iconBg} flex items-center justify-center shadow-md mb-6`}>
-                    <Icon className="w-6 h-6" />
+                  {/* Icon with Hover Pop */}
+                  <div className={`w-10 h-10 rounded-xl ${pillar.iconBg} flex items-center justify-center shadow-md mb-4 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300`}>
+                    <Icon className="w-5 h-5" />
                   </div>
 
-                  <h3 className="text-xl font-extrabold text-slate-900">
+                  {/* Title & Tagline with Opacity */}
+                  <h3 className="text-base sm:text-lg font-black text-slate-900 tracking-tight group-hover:text-brand-700 transition-colors">
                     {pillar.title}
                   </h3>
-                  <p className="text-xs font-bold text-brand-700 uppercase tracking-wider mt-1 mb-3">
+                  <p className={`text-[10px] font-bold uppercase tracking-wider mt-0.5 mb-2.5 ${pillar.tagColor}`}>
                     {pillar.tagline}
                   </p>
-                  <p className="text-sm text-slate-600 leading-relaxed mb-6 font-normal">
+
+                  {/* Description with Opacity */}
+                  <p className="text-xs text-slate-600/80 leading-relaxed mb-4 font-normal group-hover:text-slate-700 transition-colors">
                     {pillar.description}
                   </p>
 
-                  <div className="space-y-2.5 pt-4 border-t border-slate-200/60">
+                  {/* Feature Checkpoints with Opacity */}
+                  <div className="space-y-2 pt-3 border-t border-slate-200/80">
                     {pillar.features.map((feat) => (
-                      <div key={feat} className="flex items-center gap-2.5 text-xs font-semibold text-slate-700">
-                        <CheckCircle2 className="w-4 h-4 text-brand-600 shrink-0" />
+                      <div key={feat} className="flex items-center gap-2 text-xs font-semibold text-slate-700/85 group-hover:text-slate-800 transition-colors">
+                        <CheckCircle2 className={`w-3.5 h-3.5 ${pillar.accentDot} shrink-0`} />
                         <span>{feat}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div className="pt-6 mt-6">
+                {/* Footer Action with Arrow Hover Shift */}
+                <div className="pt-4 mt-5 border-t border-slate-200/60">
                   <button
+                    type="button"
                     onClick={onScrollToForm}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-700 hover:text-brand-850 hover:underline group cursor-pointer"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-700 group-hover:text-brand-800 cursor-pointer"
                   >
                     <span>Send an Inquiry</span>
-                    <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                    <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
                   </button>
                 </div>
               </div>
@@ -138,4 +149,3 @@ export default function AboutSection({ onScrollToForm }) {
     </section>
   );
 }
-

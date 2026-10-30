@@ -44,38 +44,38 @@ export default function HeroSection({ onScrollToForm }) {
             </div>
 
             {/* 3 Trust Indicator Badges */}
-            <div id="trust-section" className="pt-8 border-t border-slate-200/80 grid grid-cols-1 sm:grid-cols-3 gap-6 text-left">
+            <div id="trust-section" className="pt-8 border-t border-slate-200/80 grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
               
               {/* Badge 1: Direct Inquiry Channel */}
-              <div className="flex items-start gap-3.5 group">
-                <div className="w-10 h-10 rounded-xl bg-brand-50 group-hover:bg-brand-100 border border-brand-200/60 flex items-center justify-center text-brand-700 shrink-0 transition-colors">
-                  <GraduationCap className="w-5 h-5" />
+              <div className="flex items-start gap-3 p-3 rounded-2xl border-2 border-slate-200/90 bg-white/80 hover:bg-white hover:border-brand-500 hover:shadow-md hover:-translate-y-1 transition-all duration-200 group cursor-pointer">
+                <div className="w-9 h-9 rounded-xl bg-brand-50 group-hover:bg-brand-600 group-hover:text-white border border-brand-200/80 flex items-center justify-center text-brand-700 shrink-0 transition-all">
+                  <GraduationCap className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-slate-900">Direct Inquiries</h4>
-                  <p className="text-xs text-slate-600 font-medium">Students & Parents</p>
+                  <h4 className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-brand-700 transition-colors">Direct Inquiries</h4>
+                  <p className="text-[11px] text-slate-600/80 font-medium">Students & Parents</p>
                 </div>
               </div>
 
               {/* Badge 2: Expert Guidance */}
-              <div className="flex items-start gap-3.5 group">
-                <div className="w-10 h-10 rounded-xl bg-brand-50 group-hover:bg-brand-100 border border-brand-200/60 flex items-center justify-center text-brand-700 shrink-0 transition-colors">
-                  <Users className="w-5 h-5" />
+              <div className="flex items-start gap-3 p-3 rounded-2xl border-2 border-slate-200/90 bg-white/80 hover:bg-white hover:border-brand-500 hover:shadow-md hover:-translate-y-1 transition-all duration-200 group cursor-pointer">
+                <div className="w-9 h-9 rounded-xl bg-brand-50 group-hover:bg-brand-600 group-hover:text-white border border-brand-200/80 flex items-center justify-center text-brand-700 shrink-0 transition-all">
+                  <Users className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-slate-900">Expert Guidance</h4>
-                  <p className="text-xs text-slate-600 font-medium">from Professionals</p>
+                  <h4 className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-brand-700 transition-colors">Expert Guidance</h4>
+                  <p className="text-[11px] text-slate-600/80 font-medium">from Professionals</p>
                 </div>
               </div>
 
               {/* Badge 3: Support for Schools */}
-              <div className="flex items-start gap-3.5 group">
-                <div className="w-10 h-10 rounded-xl bg-brand-50 group-hover:bg-brand-100 border border-brand-200/60 flex items-center justify-center text-brand-700 shrink-0 transition-colors">
-                  <School className="w-5 h-5" />
+              <div className="flex items-start gap-3 p-3 rounded-2xl border-2 border-slate-200/90 bg-white/80 hover:bg-white hover:border-brand-500 hover:shadow-md hover:-translate-y-1 transition-all duration-200 group cursor-pointer">
+                <div className="w-9 h-9 rounded-xl bg-brand-50 group-hover:bg-brand-600 group-hover:text-white border border-brand-200/80 flex items-center justify-center text-brand-700 shrink-0 transition-all">
+                  <School className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-slate-900">Support for Schools</h4>
-                  <p className="text-xs text-slate-600 font-medium">and Institutions</p>
+                  <h4 className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-brand-700 transition-colors">Support for Schools</h4>
+                  <p className="text-[11px] text-slate-600/80 font-medium">and Institutions</p>
                 </div>
               </div>
 
