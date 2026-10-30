@@ -74,7 +74,7 @@ export default function InquiryForm({ onSubmitted, initialCategory }) {
   };
 
   return (
-    <section id="contact" className="scroll-mt-8">
+    <section id="contact" className="scroll-mt-24">
       <div id="inquiry-form" className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 pt-4">
       
       {/* Container Card */}

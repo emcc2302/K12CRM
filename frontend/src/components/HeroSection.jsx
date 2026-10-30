@@ -3,7 +3,7 @@ import { Award, Users, School, GraduationCap, Sparkles, CheckCircle2 } from 'luc
 
 export default function HeroSection({ onScrollToForm }) {
   return (
-    <section id="home" className="relative overflow-hidden pt-8 pb-16 lg:pt-14 lg:pb-24 scroll-mt-6">
+    <section id="home" className="relative overflow-hidden pt-8 pb-16 lg:pt-14 lg:pb-24 scroll-mt-24">
       {/* Decorative background glows */}
       <div className="absolute top-0 right-1/4 -z-10 w-96 h-96 bg-brand-200/40 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute top-1/3 left-10 -z-10 w-72 h-72 bg-blue-100/50 rounded-full blur-2xl pointer-events-none" />

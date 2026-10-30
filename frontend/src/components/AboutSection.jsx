@@ -60,7 +60,7 @@ export default function AboutSection({ onScrollToForm }) {
   ];
 
   return (
-    <section id="about" className="py-16 lg:py-24 bg-white border-y border-slate-100 relative overflow-hidden">
+    <section id="about" className="py-16 lg:py-24 bg-white border-y border-slate-100 relative overflow-hidden scroll-mt-24">
       {/* Background ambient accents */}
       <div className="absolute top-1/2 left-0 -translate-y-1/2 w-72 h-72 bg-brand-50/80 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute top-1/4 right-0 w-80 h-80 bg-blue-50/80 rounded-full blur-3xl pointer-events-none" />
@@ -138,3 +138,4 @@ export default function AboutSection({ onScrollToForm }) {
     </section>
   );
 }
+

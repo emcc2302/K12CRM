@@ -58,8 +58,8 @@ export default function Navbar({ onNavigate, activeView }) {
   };
 
   return (
-    // Header is in natural document flow so it scrolls along with the page
-    <header className="relative w-full z-40 bg-white border-b border-slate-100 transition-all">
+    // Fixed/sticky header pinned at the top with backdrop blur
+    <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-slate-100/90 shadow-sm transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           

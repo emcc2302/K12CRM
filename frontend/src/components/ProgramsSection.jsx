@@ -59,7 +59,7 @@ export default function ProgramsSection({ onSelectProgram }) {
   ];
 
   return (
-    <section id="programs" className="py-16 lg:py-24 bg-slate-50 relative overflow-hidden">
+    <section id="programs" className="py-16 lg:py-24 bg-slate-50 relative overflow-hidden scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -141,3 +141,4 @@ export default function ProgramsSection({ onSelectProgram }) {
     </section>
   );
 }
+
